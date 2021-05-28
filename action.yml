@@ -17,8 +17,9 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - run: mkdir -p ./.github/actions
+    - run: | 
+        mkdir -p ./.github/actions
+        cd ./.github/actions
+        git clone https://${{ inputs.private-action-token }}:x-oauth-basic@github.com/olxbr/${{ inputs.private-action }}.git
+        git checkout ${{ inputs.private-action-ref }}
       shell: bash
-    - run: cd ./.github/actions
-      shell: bash
-    - run: git clone https://${{ inputs.private-action-token }}:x-oauth-basic@github.com/olxbr/${{ inputs.private-action }}.git
