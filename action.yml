@@ -8,20 +8,14 @@ inputs:
   private-action-token:
     description: 'Token to access the private repository'
     required: true
+  private-action-ref:
+    description: 'Version, branch, hash or tag'
+    required: true
+outputs:
+  action-path:
+    description: 'Action path to use in next steps'
 runs:
   using: 'composite'
   steps:
-    - name: Checkout olxbr/${{ inputs.private-action }}
-      uses: actions/checkout@v2
-      with:
-        repository: olxbr/${{ inputs.private-action }}
-        ref: refs/heads/main
-        token: ${{ inputs.private-action-token }}
-        persist-credentials: false
-        path: ./.github/actions/${{ inputs.private-action }}
-
-    - name: Execute action ${{ inputs.private-action }}
-      id: ${{ inputs.private-action }}
-      uses: ./.github/actions/${{ inputs.private-action }}
-      with:
-        who-to-greet: 'Olx Brasil'
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: bash
