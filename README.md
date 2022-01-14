@@ -1,3 +1,5 @@
+[![Security Workflow](https://github.com/olxbr/use-private-action/actions/workflows/security-workflow.yml/badge.svg)](https://github.com/olxbr/use-private-action/actions/workflows/security-workflow.yml)
+
 # use-private-action
 This action allows you to use private actions.
 
